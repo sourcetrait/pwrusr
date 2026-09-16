@@ -16,7 +16,7 @@ Users are guaranteed the following:
 - Helix
 - uenv
 
-## Home Guarantees
+## Home Guarantees (UENV_USR_SPEC = 'pwrusr')
 - .config/
   - secret/
 - .ssh/
@@ -47,9 +47,9 @@ Users are guaranteed the following:
   - calc/ img/ mdl/ snd/ txt/ vid/ web/ 
 
 ## Environment Guarantees
-- UENV_USR_SPEC = 'pwrusr'
+The following will exist:
+- UENV_USR_SPEC (xdg, pwrusr, other, ...)
 - XDG: CONFIG CACHE DATA STATE
-- CARGO_TARGET_DIR = ~/sys/cache/cargo
 
 ## Conventions
 - Anything that isn't XDG compliant:
@@ -57,6 +57,16 @@ Users are guaranteed the following:
   - ~/sys/{cache data state}/{name}
 - Third-party installs: ~/sys/local/
 - First-party installs: ~/sys/use/
+- UENV_USR_SPEC
+  - 'x_': extension
+  - 'other': not strictly based on a uenv standard or extension, or not known
+    - 'm_': modification (other) based on a uenv standard spec
+    - 'mx_': modification (other) based on a uenv extension spec
+
+## Initial Environment
+Initially configured as:
+- UENV_USR_SPEC = 'pwrusr'
+- CARGO_TARGET_DIR = ~/sys/cache/cargo
 
 
 Repository
