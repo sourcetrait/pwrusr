@@ -21,7 +21,7 @@ Users are guaranteed the following:
   - secret/
 - .ssh/
   - key/
-    - at/ as/ me/
+    - as/ at/ me/
 - sys/
   - cache/ state/
   - data/
@@ -39,7 +39,7 @@ Users are guaranteed the following:
   - srv/
     - git/
   - sync/
-    - at/ as/ me/
+    - as/ at/ me/
 - proj/ repo/
 - bak/ down/ tmp/
 - data/ doc/ sort/ tpl/
