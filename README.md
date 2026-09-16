@@ -4,7 +4,7 @@ pwrusr
 
 Standardized cross-platform-capable user profile designed for power users
 
-## Guarantees
+## System Guarantees
 Users are guaranteed the following:
 - Nushell (default)
   - pwrusr config and module
@@ -16,7 +16,7 @@ Users are guaranteed the following:
 - Helix
 - uenv
 
-### Home (~/)
+## Home Guarantees
 - .config
   - secret/
 - sys/
@@ -38,6 +38,18 @@ Users are guaranteed the following:
 - doc/ data/ sort/ tpl/
 - mix/
   - calc/ img/ mdl/ snd/ txt/ vid/ web/ 
+
+## Environment Guarantees
+- UENV_USR_SPEC = 'pwrusr'
+- XDG: CONFIG CACHE DATA STATE
+- CARGO_TARGET_DIR = ~/sys/cache/cargo
+
+## Conventions
+- Anything that isn't XDG compliant:
+  - ~/sys/of/{name}, or
+  - ~/sys/{cache data state}/{name}
+- Third-party installs: ~/sys/local/
+- First-party installs: ~/sys/use/
 
 
 Repository
