@@ -19,6 +19,7 @@ Users are guaranteed the following:
 ## Home Guarantees
 - .config/
   - secret/
+- .ssh/
 - sys/
   - cache/ state/
   - data/
