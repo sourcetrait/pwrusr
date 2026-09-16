@@ -15,24 +15,29 @@ Users are guaranteed the following:
     - analyzer
 - Helix
 - uenv
-- Home directory that adheres to the uenv pwrusr spec
-  - ~/.config
-  - ~/sys/
+
+### Home (~/)
+- .config
+  - secret/
+- sys/
+  - cache/ data/ state/
+  - secret/
     - cache/ data/ state/
-    - secret/
-      - config/ cache/ data/ state/ my/
-    - local/
-      - bin/ etc/ lib/ opt/ var/ share/ src/ doc/
-    - my/
-      - exe/ cfg/ lib/ pkg/ data/ asset/ src/ doc/
-    - of/
-      - nu/
-        - exe/ mod/
-    - srv/
-      - git/
-    - mnt/
-  - ~/
-    - repo/ proj/ tmp/ 
+  - local/
+    - bin/ etc/ lib/ opt/ var/ share/ src/ doc/
+  - use/
+    - exe/ cfg/ lib/ pkg/ data/ asset/ src/ doc/
+  - of/
+    - nu/
+      - exe/ mod/
+  - srv/
+    - git/
+  - mnt/
+- repo/ proj/
+- tmp/ down/ bak/
+- doc/ data/ sort/ tpl/
+- mix/
+  - calc/ img/ mdl/ snd/ txt/ vid/ web/ 
 
 
 Repository
