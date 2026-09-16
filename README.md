@@ -23,11 +23,11 @@ Users are guaranteed the following:
       - config/ cache/ data/ state/ my/
     - local/
       - bin/ etc/ lib/ opt/ var/ share/ src/ doc/
+    - my/
+      - exe/ cfg/ lib/ pkg/ data/ asset/ src/ doc/
     - of/
       - nu/
         - exe/ mod/
-    - my/
-      - exe/ cfg/ lib/ pkg/ data/ asset/ src/ doc/
     - srv/
       - git/
     - mnt/
