@@ -12,7 +12,7 @@ $env.PATH = ($env.PATH | append [
     ($nu.home-dir | path join '.sys/my/exe')
 ])
 
-$env.UENV_USR_SPEC = "usrlay"
+$env.UENV_USR_SPEC = "pwrusr"
 
 $env.XDG_CACHE_HOME = ($nu.home-dir | path join '.sys/cache')
 $env.XDG_CONFIG_HOME = ($nu.home-dir | path join '.config')
@@ -54,9 +54,9 @@ if $nu.os-info.family == 'unix' {
 
 alias raw = open --raw
 
-source src/usrlay.nu
+source src/pwrusr.nu
 
-$env.PROMPT_COMMAND       = {|| $"(ansi blue)(whoami)(ansi grey)@(sys host | get hostname) (ansi green)(usrlay prompt dir)(ansi purple)(usrlay prompt branch)(ansi reset)" }
+$env.PROMPT_COMMAND       = {|| $"(ansi blue)(whoami)(ansi grey)@(sys host | get hostname) (ansi green)(pwrusr prompt dir)(ansi purple)(pwrusr prompt branch)(ansi reset)" }
 $env.PROMPT_INDICATOR     = {|| "> " }
 $env.PROMPT_COMMAND_RIGHT = {|| "" }
 

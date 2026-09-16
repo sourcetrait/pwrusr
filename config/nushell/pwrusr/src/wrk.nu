@@ -1,9 +1,9 @@
 export def --env wrk [alias?: string]: nothing -> nothing {
-    let work_file = ($nu.default-config-dir | path join 'nuon/usrlay/work.nuon' | path expand)
+    let work_file = ($nu.default-config-dir | path join 'nuon/pwrusr/work.nuon' | path expand)
     if not ($work_file | path exists) {
-        let nuon_dir = ($nu.default-config-dir | path join 'nuon/usrlay' | path expand)
+        let nuon_dir = ($nu.default-config-dir | path join 'nuon/pwrusr' | path expand)
         mkdir $nuon_dir
-        cp ($nu.default-config-dir | path join 'usrlay/nuon/default/work.nuon' | path expand) $nuon_dir
+        cp ($nu.default-config-dir | path join 'pwrusr/nuon/default/work.nuon' | path expand) $nuon_dir
     }
     
     let wrk: record<default: directory, dirs: table<aliases: list<string>, dir: directory>> = open $work_file

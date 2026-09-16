@@ -1,1 +1,1 @@
-source usrlay/config.usrlay.nu
+source pwrusr/config.pwrusr.nu

@@ -1,4 +1,4 @@
-export def 'usrlay prompt dir' []: nothing -> string {
+export def 'pwrusr prompt dir' []: nothing -> string {
     let sep = (char path_sep)
     let home = $nu.home-dir
     let pwd = $env.PWD
@@ -23,7 +23,7 @@ export def 'usrlay prompt dir' []: nothing -> string {
     }
 }
 
-export def 'usrlay prompt branch' []: nothing -> string {
+export def 'pwrusr prompt branch' []: nothing -> string {
     match (^git branch --show-current | complete | get stdout | default '' | str trim) {
         '' => '',
         $s => $" \(($s)\)"

@@ -1,4 +1,4 @@
-SourceTrait Usrlay
+SourceTrait Power User
 ================================================================================
 [![License Badge]][License]
 
@@ -33,7 +33,7 @@ contribution.
 
 License (AGPL3)
 --------------------------------------------------------------------------------
-SourceTrait Usrlay  
+pwrusr  
 Developed by [SourceTrait](https://sourcetrait.com), a division of **Asmov LLC**  
 Copyright (C) 2026 [Asmov LLC](https://asmov.software)  
 
