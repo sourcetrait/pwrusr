@@ -11,7 +11,21 @@ Users are guaranteed the following:
   - Plugins (standard)
     - nu_plugin_soak
 - Rust
+  - Components (standard)
+    - analyzer
 - Helix
+- uenv
+- Home directory that adheres to the uenv pwrusr spec
+  - ~/.config
+  - ~/sys/
+    - cache/ data/ state/
+    - secret/
+      - config/ cache/ data/ state/ my/
+    - local/
+    - of/
+    - my/
+    - srv/
+    - mnt/
 
 
 Repository
