@@ -44,6 +44,9 @@
       - exe Nushell Executables
       - mod Nushell Modules
   - secret Secrets
+    - cache Secret System Cache
+    - data Secret System Data
+    - state Secret System State
   - srv Serve
     - git Served Git Repositories
   - state System State
