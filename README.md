@@ -20,7 +20,9 @@ Users are guaranteed the following:
 - .config/
   - secret/
 - sys/
-  - cache/ data/ state/
+  - cache/ state/
+  - data/
+    - desktop/
   - secret/
     - cache/ data/ state/
   - local/
