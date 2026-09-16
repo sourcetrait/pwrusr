@@ -20,6 +20,7 @@ Users are guaranteed the following:
 - .config/
   - secret/
 - .ssh/
+  - key/
 - sys/
   - cache/ state/
   - data/
