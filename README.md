@@ -30,12 +30,13 @@ Users are guaranteed the following:
   - of/
     - nu/
       - exe/ mod/
+  - mnt/
   - srv/
     - git/
-  - mnt/
-- repo/ proj/
-- tmp/ down/ bak/
-- doc/ data/ sort/ tpl/
+  - sync/
+- proj/ repo/
+- bak/ down/ tmp/
+- data/ doc/ sort/ tpl/
 - mix/
   - calc/ img/ mdl/ snd/ txt/ vid/ web/ 
 
