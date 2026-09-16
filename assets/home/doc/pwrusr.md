@@ -16,7 +16,7 @@
 - doc Documents
 - down Downloads
 - mix Mixed Media
-  - calc Spreadsheets
+  - calc Calculations
   - img Images
   - mdl Models
   - snd Sound
