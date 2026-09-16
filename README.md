@@ -1,15 +1,18 @@
-SourceTrait Power User
+pwrusr
 ================================================================================
 [![License Badge]][License]
 
-Cross-platform user profile overlay
+Standardized cross-platform-capable user profile designed for power users
 
 ## Guarantees
 Users are guaranteed the following:
 - Nushell (default)
-- Helix
+  - pwrusr config and module
+  - Plugins (standard)
+    - nu_plugin_soak
 - Rust
-- Usrlay nu tools
+- Helix
+
 
 Repository
 --------------------------------------------------------------------------------
