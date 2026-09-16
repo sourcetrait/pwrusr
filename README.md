@@ -17,7 +17,7 @@ Users are guaranteed the following:
 - uenv
 
 ## Home Guarantees
-- .config
+- .config/
   - secret/
 - sys/
   - cache/ data/ state/
