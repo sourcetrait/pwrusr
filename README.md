@@ -66,7 +66,7 @@ The following will exist:
 ## Initial Environment
 Initially configured as:
 - UENV_USR_SPEC = 'pwrusr'
-- CARGO_TARGET_DIR = ~/sys/cache/cargo
+- CARGO_TARGET_DIR = ~/sys/cache/cargo/target
 
 
 Repository
