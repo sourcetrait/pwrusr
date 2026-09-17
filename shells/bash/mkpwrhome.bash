@@ -1,106 +1,107 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-if [ "$#" -lt 3 ]; then
-    echo "usage: mkpwrhome DIR USR GRP"
-fi
+function mk_sysusr {
+    local dir="$1"
+    local owner="${2:-}"
 
-DIR="$1"
-USR="$2"
-GRP="$3"
+    mkdir -p $dir
 
-MK_DESKTOP=1
-MK_GIT=1
-MK_RUST=1
-MK_NU=1
-MK_SSH=1
-MK_OWN=1
+    cd $dir
+    mkdir -p .config bak data doc down mix proj repo sort sys tmp tpl
 
-mkdir -p $DIR
+    cd $dir/.config
+    mkdir -p secret
 
-cd $DIR
-mkdir -p .config bak data doc down mix proj repo sort sys tmp tpl
+    cd $dir/mix
+    mkdir -p calc img mdl snd txt vid web
 
-cd $DIR/.config
-mkdir -p secret
+    cd $dir/sys
+    mkdir -p cache data local mnt of secret state srv sync use
 
-cd $DIR/mix
-mkdir -p calc img mdl snd txt vid web
+    cd $dir/sys/secret
+    mkdir -p cache data state
 
-cd $DIR/sys
-mkdir -p cache data local mnt of secret state srv sync use
+    cd $dir/sys/local
+    mkdir -p bin doc etc lib opt share src var
 
-cd $DIR/sys/secret
-mkdir -p cache data state
+    cd $dir/sys/sync
+    mkdir -p as at me
 
-cd $DIR/sys/local
-mkdir -p bin doc etc lib opt share src var
+    cd $dir/sys/use
+    mkdir -p asset cfg data doc exe lib pkg src
+    
+    if [ -n "$owner" ]; then
+        cd $dir
+        chmod -R go-rwx .
+        chown -R $owner .
+    fi
+}
 
-cd $DIR/sys/sync
-mkdir -p as at me
+function mk_pwrusr {
+    local dir="$1"
+    local owner="${2:-}"
 
-cd $DIR/sys/use
-mkdir -p asset cfg data doc exe lib pkg src
+    mk_sysusr "$dir" "$owner"
 
-if [ $MK_DESKTOP ]; then
-    cd $DIR/sys/data
+    cd $dir/sys/data
     mkdir -p desktop
-fi
 
-if [ $MK_GIT ]; then
-    cd $DIR/sys/srv
+    cd $dir/sys/srv
     mkdir -p git
-fi
 
-if [ $MK_NU ]; then
-    cd $DIR/sys/of
+    cd $dir/sys/of
     mkdir -p nu
 
-    cd $DIR/sys/of/nu
+    cd $dir/sys/of/nu
     mkdir -p exe mod
 
-    cd $DIR/.config
+    cd $dir/.config
     mkdir -p nushell
 
-    cd $DIR/.config/nushell
+    cd $dir/.config/nushell
     if [ -e scripts ] || [ -L scripts ]; then
-        RETIRE_DIR=$(mktemp -d $DIR/tmp/retire/mkpwrhome.XXXXXX)
+        RETIRE_DIR=$(mktemp -d $dir/tmp/retire/mkpwrhome.XXXXXX)
         mkdir -p $RETIRE_DIR/.config/nushell
         mv scripts $RETIRE_DIR/.config/nushell
     fi
     ln -s ../../sys/of/nu/mod scripts
-fi
 
-if [ $MK_RUST ]; then
-    cd $DIR/sys/cache
+    cd $dir/sys/cache
     mkdir -p cargo
     
-    cd $DIR/sys/cache/cargo
+    cd $dir/sys/cache/cargo
     mkdir -p target
-fi
 
-if [ $MK_SSH ]; then
-    cd $DIR
+    cd $dir
     mkdir -p .ssh
 
-    cd $DIR/.ssh
+    cd $dir/.ssh
     mkdir -p key
 
-    cd $DIR/.ssh/key
+    cd $dir/.ssh/key
     mkdir -p as at me
 
-    cd $DIR/.ssh
+    cd $dir/.ssh
     if [ ! -f config ]; then
         touch config
     fi
     if [ ! -f authorized_keys ]; then
         touch authorized_keys
     fi
+
+    if [ -n "$owner" ]; then
+        cd $dir
+        chmod -R go-rwx .
+        chown -R $owner .
+    fi
+}
+
+if [ "$#" -lt 2 ]; then
+    echo "usage: mkpwrhome DIR USR:GRP"
 fi
 
-if [ $MK_OWN ]; then
-    cd $DIR
-    chmod -R go-rwx .
-    chown -R $USR:$GRP .
-fi
+DIR="$1"
+OWNER="$2"
 
+mk_pwrusr $DIR $OWNER
