@@ -45,7 +45,7 @@ function mk_sysusr {
     if ($owner -ne $null) {
         Set-Location -LiteralPath $dir
         if ($IsWindows) {
-            icacls.exe . /setowner $owner /t /c
+            $null = icacls.exe . /setowner $owner /t /c /q
         } else {
             chmod -R go-rwx .
             chown -R $owner .
@@ -112,8 +112,8 @@ function mk_pwrusr {
     if ($owner -ne $null) {
         Set-Location -LiteralPath $dir
         if ($IsWindows) {
-            icacls.exe . /setowner $owner /t /c
-            icacls.exe (Join-Path $dir '.ssh') /inheritance:r /grant "${owner}:(OI)(CI)F" /grant 'SYSTEM:(OI)(CI)F'
+            $null = icacls.exe . /setowner $owner /t /c /q
+            $null = icacls.exe (Join-Path $dir '.ssh') /inheritance:r /grant "${owner}:(OI)(CI)F" /grant 'SYSTEM:(OI)(CI)F' /q
         } else {
             chmod -R go-rwx .
             chown -R $owner .
@@ -149,4 +149,9 @@ function mkdtemp {
     throw "mkdtmp failed for: $dir"
 }
 
-mk_pwrusr $dir $owner
+try {
+    Push-Location
+    mk_pwrusr ([System.IO.Path]::GetFullPath($dir, (Get-Location).Path)) $owner
+} finally {
+    Pop-Location
+}
