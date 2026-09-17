@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 function mk_sysusr {
@@ -61,9 +61,9 @@ function mk_pwrusr {
 
     cd $dir/.config/nushell
     if [ -e scripts ] || [ -L scripts ]; then
-        RETIRE_DIR=$(mktemp -d $dir/tmp/retire/mkpwrhome.XXXXXX)
-        mkdir -p $RETIRE_DIR/.config/nushell
-        mv scripts $RETIRE_DIR/.config/nushell
+        local retire_dir =$(mktemp -d $dir/tmp/retire/mkpwrhome.XXXXXX)
+        mkdir -p $retire_dir/.config/nushell
+        mv scripts $retire_dir/.config/nushell
     fi
     ln -s ../../sys/of/nu/mod scripts
 
