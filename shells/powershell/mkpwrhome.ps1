@@ -127,10 +127,14 @@ function mkdtemp {
         [string] $dir,
         [string] $prefix = 'tmp-'
     )
+    
+    if (-not (Test-Path -LiteralPath $dir)) {
+        New-Item -ItemType Directory $dir
+    }
 
     $dir = Get-Item -LiteralPath $dir -ErrorAction Stop
     if (-not $dir.PSIsContainer) {
-        throw "not a directory: $dir"
+        throw "mkdtemp: not a directory: $dir"
     }
 
     for ($i = 0; $i -lt 100; $i++) {
