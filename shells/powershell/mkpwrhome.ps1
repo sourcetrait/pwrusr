@@ -42,7 +42,7 @@ function mk_sysusr {
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'use')
     $null = New-Item -ItemType Directory -Force -Path @('asset','cfg','data','doc','exe','lib','pkg','src')
     
-    if ($owner -ne $null) {
+    if ($owner) {
         Set-Location -LiteralPath $dir
         if ($IsWindows) {
             $null = icacls.exe . /setowner $owner /t /c /q
@@ -69,7 +69,10 @@ function mk_pwrusr {
     $null = New-Item -ItemType Directory -Force -Path 'git'
 
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'of')
-    $null = New-Item -ItemType Directory -Force -Path 'nu'
+    $null = New-Item -ItemType Directory -Force -Path @('cargo','nu')
+    
+    Set-Location -LiteralPath (Join-Path $dir 'sys' 'of' 'cargo')
+    $null = New-Item -ItemType Directory -Force -Path @('bin')
 
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'of' 'nu')
     $null = New-Item -ItemType Directory -Force -Path @('mod','plugins')
@@ -109,7 +112,7 @@ function mk_pwrusr {
         $null = New-Item -ItemType File -Path 'authorized_keys'
     }
 
-    if ($owner -ne $null) {
+    if ($owner) {
         Set-Location -LiteralPath $dir
         if ($IsWindows) {
             $null = icacls.exe . /setowner $owner /t /c /q
