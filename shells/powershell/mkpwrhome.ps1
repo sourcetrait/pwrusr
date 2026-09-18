@@ -132,7 +132,7 @@ function mkdtemp {
     )
     
     if (-not (Test-Path -LiteralPath $dir)) {
-        New-Item -ItemType Directory $dir
+        $null = New-Item -ItemType Directory $dir
     }
 
     $dir = Get-Item -LiteralPath $dir -ErrorAction Stop
