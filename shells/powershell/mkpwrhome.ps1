@@ -72,7 +72,7 @@ function mk_pwrusr {
     $null = New-Item -ItemType Directory -Force -Path 'nu'
 
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'of' 'nu')
-    $null = New-Item -ItemType Directory -Force -Path @('exe','mod')
+    $null = New-Item -ItemType Directory -Force -Path @('mod','plugins')
 
     Set-Location -LiteralPath (Join-Path $dir '.config')
     $null = New-Item -ItemType Directory -Force -Path 'nushell'

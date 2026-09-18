@@ -54,14 +54,14 @@ function mk_pwrusr {
     mkdir -p nu
 
     cd $dir/sys/of/nu
-    mkdir -p exe mod
+    mkdir -p mod plugins
 
     cd $dir/.config
     mkdir -p nushell
 
     cd $dir/.config/nushell
     if [ -e scripts ] || [ -L scripts ]; then
-        local retire_dir =$(mktemp -d $dir/tmp/retire/mkpwrhome.XXXXXX)
+        local retire_dir=$(mktemp -d $dir/tmp/retire/mkpwrhome.XXXXXX)
         mkdir -p $retire_dir/.config/nushell
         mv scripts $retire_dir/.config/nushell
     fi
@@ -97,11 +97,8 @@ function mk_pwrusr {
     fi
 }
 
-if [ "$#" -lt 2 ]; then
+if [ "$#" -ne 2 ]; then
     echo "usage: mkpwrhome DIR USR:GRP"
 fi
 
-DIR="$1"
-OWNER="$2"
-
-mk_pwrusr $DIR $OWNER
+mk_pwrusr "$(realpath "$1")" "$2"
