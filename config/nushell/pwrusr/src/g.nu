@@ -22,8 +22,9 @@ export def "g ac" [...rest]: nothing -> nothing {
     }
 }
 
-# g r -> lists
-# g r setup [host] [branch] -> setup relay and side-branch
-# g r from [side] -> pull/rebase from relay
-# g r to [side] -> push/rebase to relay
-# g r sync -> sync between all relays and push to origin
+# g r make [host] [branch] [side] -> setup relay and side-branch
+# g r l -> list
+# g r d [side] -> pull/rebase from relay
+# g r u [side] -> push to relay
+# g r du [side] -> pull/rebase from relay, then push to relay
+# g r y -> sync between all relays and push to origin

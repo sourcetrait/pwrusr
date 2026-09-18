@@ -16,39 +16,38 @@ Users are guaranteed the following:
 - Helix
 - uenv
 
-## Home Guarantees (UENV_USR_SPEC = 'pwrusr')
+## Home Guarantees (UENV_USR_SPEC = 'usrsys')
 - .config/
   - secret/
-- .ssh/
-  - key/
-    - as/ at/ me/
 - sys/
-  - cache/ state/
-  - data/
-    - desktop/
+  - adhoc/
+    - exe/ cfg/ lib/ pkg/ data/ asset/ src/ doc/
+  - cache/ state/ data/
   - secret/
     - cache/ data/ state/
   - local/
     - bin/ etc/ lib/ opt/ var/ share/ src/ doc/
-  - use/
-    - exe/ cfg/ lib/ pkg/ data/ asset/ src/ doc/
-  - of/
-    - nu/
-      - exe/ mod/
   - mnt/
   - srv/
-    - git/
   - sync/
     - as/ at/ me/
-- proj/ repo/
-- bak/ down/ tmp/
-- data/ doc/ sort/ tpl/
-- mix/
-  - calc/ img/ mdl/ snd/ txt/ vid/ web/ 
+
+## Home Guarantees (UENV_USR_SPEC = 'pwrusr', Extends 'usrsys')
+- .ssh/
+  - key/
+    - as/ at/ me/
+- sys/
+  - data/
+    - desktop/
+  - of/
+    - nu/
+      - mod/ plugins/
+  - srv/
+    - git/
 
 ## Environment Guarantees
 The following will exist:
-- UENV_USR_SPEC (xdg, pwrusr, other, ...)
+- UENV_USR_SPEC (xdg, usrsys, pwrusr, other, ...)
 - XDG: CONFIG CACHE DATA STATE
 
 ## Conventions

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-function mk_sysusr {
+function mk_usrsys_home {
     local dir="$1"
     local owner="${2:-}"
 
@@ -17,7 +17,7 @@ function mk_sysusr {
     mkdir -p calc img mdl snd txt vid web
 
     cd "$dir/sys"
-    mkdir -p cache data local mnt of secret state srv sync use
+    mkdir -p adhoc cache data local mnt of secret state srv sync
 
     cd "$dir/sys/secret"
     mkdir -p cache data state
@@ -28,7 +28,7 @@ function mk_sysusr {
     cd "$dir/sys/sync"
     mkdir -p as at me
 
-    cd "$dir/sys/use"
+    cd "$dir/sys/adhoc"
     mkdir -p asset cfg data doc exe lib pkg src
     
     if [ -n "$owner" ]; then
@@ -42,7 +42,7 @@ function mk_pwrusr {
     local dir="$1"
     local owner="${2:-}"
 
-    mk_sysusr "$dir" "$owner"
+    mk_usrsys_home "$dir" "$owner"
 
     cd "$dir/sys/data"
     mkdir -p desktop

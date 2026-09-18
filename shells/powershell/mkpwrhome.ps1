@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 $PSNativeCommandUseErrorActionPreference = $true
 #Set-PSDebug -Trace 1
 
-function mk_sysusr {
+function mk_usrsys_home {
     param(
         [Parameter(Mandatory)]
         [string] $dir,
@@ -28,7 +28,7 @@ function mk_sysusr {
     $null = New-Item -ItemType Directory -Force -Path @('calc','img','mdl','snd','txt','vid','web')
 
     Set-Location -LiteralPath (Join-Path $dir 'sys')
-    $null = New-Item -ItemType Directory -Force -Path @('cache','data','local','mnt','of','secret','state','srv','sync','use')
+    $null = New-Item -ItemType Directory -Force -Path @('adhoc','cache','data','local','mnt','of','secret','state','srv','sync')
 
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'secret')
     $null = New-Item -ItemType Directory -Force -Path @('cache','data','state')
@@ -39,7 +39,7 @@ function mk_sysusr {
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'sync')
     $null = New-Item -ItemType Directory -Force -Path @('as','at','me')
 
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'use')
+    Set-Location -LiteralPath (Join-Path $dir 'sys' 'adhoc')
     $null = New-Item -ItemType Directory -Force -Path @('asset','cfg','data','doc','exe','lib','pkg','src')
     
     if ($owner) {
@@ -53,14 +53,14 @@ function mk_sysusr {
     }
 }
 
-function mk_pwrusr {
+function mk_pwrusr_home {
     param(
         [Parameter(Mandatory)]
         [string] $dir,
         [string] $owner
     )
 
-    mk_sysusr $dir $owner
+    mk_usrsys_home $dir $owner
 
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'data')
     $null = New-Item -ItemType Directory -Force -Path 'desktop'
@@ -158,7 +158,7 @@ function mkdtemp {
 
 try {
     Push-Location
-    mk_pwrusr ([System.IO.Path]::GetFullPath($dir, (Get-Location).Path)) $owner
+    mk_pwrusr_home ([System.IO.Path]::GetFullPath($dir, (Get-Location).Path)) $owner
 } finally {
     Pop-Location
 }

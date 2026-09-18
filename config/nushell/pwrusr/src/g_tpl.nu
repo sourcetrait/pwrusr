@@ -1,4 +1,4 @@
-# Creates a new Git repository using '.repo' templates.
+# Creates a new Git repository using '.well' templates.
 export def --env 'g new' [
     dir: directory,
     --user: string = 'default',
@@ -23,11 +23,11 @@ def g_new [
         error make --unspanned $"directory already exists: ($dir)"
     }
     
-    let user_tpl = ((dotrepo 'g/user') | tpl expand suffix '.config' $user)
-    let license_tpl = ((dotrepo 'g/license') | tpl expand link $license)
-    let readme_tpl = ((dotrepo 'g/readme') | tpl expand prefix 'README' '.md' $readme)
-    let ignore_tpl = ((dotrepo 'g/ignore') | tpl expand suffix '.gitignore' $ignore)
-    let cfg_tpl = ((dotrepo 'g/cfg') | tpl expand suffix '.toml' $ignore)
+    let user_tpl = ((well 'g/user') | tpl expand suffix '.config' $user)
+    let license_tpl = ((well 'g/license') | tpl expand link $license)
+    let readme_tpl = ((well 'g/readme') | tpl expand prefix 'README' '.md' $readme)
+    let ignore_tpl = ((well 'g/ignore') | tpl expand suffix '.gitignore' $ignore)
+    let cfg_tpl = ((well 'g/cfg') | tpl expand suffix '.toml' $ignore)
 
     let fill = { user: (git config --file $user_tpl.src 'user.name') }
 
@@ -97,7 +97,7 @@ def 'tpl expand suffix' [ext: string, tpl: string, --option]: directory -> oneof
     if ($src | path exists) {
         $src | tpl srcdst $dir
     } else if not $option {
-        error make --unspanned $"dotrepo template not found: ($src)"
+        error make --unspanned $"well template not found: ($src)"
     } else {
         null
     }
@@ -114,7 +114,7 @@ def 'tpl expand link' [tpl: string, --option]: path -> oneof<nothing, record<src
     if ($src | path exists) {
         $src | tpl srcdst $dir
     } else if not $option {
-        error make --unspanned $"dotrepo template not found: ($src)"
+        error make --unspanned $"well template not found: ($src)"
     } else {
         null
     }
@@ -131,18 +131,18 @@ def 'tpl expand prefix' [prefix: string, ext: string, tpl: string, --option]: pa
     if ($src | path exists) {
         $src | tpl srcdst $dir
     } else if not $option {
-        error make --unspanned $"dotrepo template not found: ($src)"
+        error make --unspanned $"well template not found: ($src)"
     } else {
         null
     }
 }
 
-# finds a '.repo/$subdir' in the parent path hierarchy
-export def dotrepo [subdir: directory, --option]: nothing -> oneof<nothing, directory> {
+# finds a '.well/$subdir' in the parent path hierarchy
+export def well [subdir: directory, --option]: nothing -> oneof<nothing, directory> {
     mut curdir = (pwd)
 
     loop {
-        let repodir = ($curdir | path join '.repo' $subdir | path expand)
+        let repodir = ($curdir | path join '.well' $subdir | path expand)
         if ($repodir | path exists) {
             return $repodir
         }
@@ -151,7 +151,7 @@ export def dotrepo [subdir: directory, --option]: nothing -> oneof<nothing, dire
         if not ($dir == $curdir) {
             $curdir = $dir
         } else if not $option {
-            error make --unspanned $"dotrepo not found in parent hierarchy: .repo/($subdir)"
+            error make --unspanned $"well not found in parent hierarchy: .well/($subdir)"
         } else {
             return null
         }
