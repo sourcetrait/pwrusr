@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 $PSNativeCommandUseErrorActionPreference = $true
 #Set-PSDebug -Trace 1
 
-function mk_usrsys_home {
+function mk_home_dotsys {
     param(
         [Parameter(Mandatory)]
         [string] $dir,
@@ -19,29 +19,23 @@ function mk_usrsys_home {
     $null = New-Item -ItemType Directory -Force -Path $dir
 
     Set-Location -LiteralPath $dir
-    $null = New-Item -ItemType Directory -Force -Path @('.config','bak','data','doc','down','mix','proj','repo','sort','sys','tmp','tpl')
+    $null = New-Item -ItemType Directory -Force -Path @('.config','.sys')
 
     Set-Location -LiteralPath (Join-Path $dir '.config')
     $null = New-Item -ItemType Directory -Force -Path 'secret'
 
-    Set-Location -LiteralPath (Join-Path $dir 'mix')
-    $null = New-Item -ItemType Directory -Force -Path @('calc','img','mdl','snd','txt','vid','web')
-
-    Set-Location -LiteralPath (Join-Path $dir 'sys')
+    Set-Location -LiteralPath (Join-Path $dir '.sys')
     $null = New-Item -ItemType Directory -Force -Path @('adhoc','cache','data','local','mnt','of','secret','state','srv','sync')
 
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'secret')
+    Set-Location -LiteralPath (Join-Path $dir '.sys' 'secret')
     $null = New-Item -ItemType Directory -Force -Path @('cache','data','state')
 
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'local')
-    $null = New-Item -ItemType Directory -Force -Path @('bin','doc','etc','lib','opt','share','src','var')
-
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'sync')
-    $null = New-Item -ItemType Directory -Force -Path @('as','at','me')
-
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'adhoc')
-    $null = New-Item -ItemType Directory -Force -Path @('asset','cfg','data','doc','exe','lib','pkg','src')
+    Set-Location -LiteralPath (Join-Path $dir '.sys' 'local')
+    $null = New-Item -ItemType Directory -Force -Path @('bin','doc','etc','lib','libexec','opt','share','src','var')
     
+    Set-Location -LiteralPath (Join-Path $dir '.sys' 'adhoc')
+    $null = New-Item -ItemType Directory -Force -Path @('bin','doc','etc','lib','libexec','opt','share','src','var')
+
     if ($owner) {
         Set-Location -LiteralPath $dir
         if ($IsWindows) {
@@ -53,45 +47,46 @@ function mk_usrsys_home {
     }
 }
 
-function mk_pwrusr_home {
+function mk_home_pwrusr {
     param(
         [Parameter(Mandatory)]
         [string] $dir,
         [string] $owner
     )
 
-    mk_usrsys_home $dir $owner
+    mk_home_dotsys $dir $owner
 
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'data')
+
+    Set-Location -LiteralPath $dir
+    $null = New-Item -ItemType Directory -Force -Path @('bak','data','doc','down','mix','proj','repo','sort','tmp','tpl')
+    
+    Set-Location -LiteralPath (Join-Path $dir 'mix')
+    $null = New-Item -ItemType Directory -Force -Path @('calc','img','mdl','snd','txt','vid','web')
+
+    Set-Location -LiteralPath (Join-Path $dir '.sys' 'sync')
+    $null = New-Item -ItemType Directory -Force -Path @('as','at','me')
+
+    Set-Location -LiteralPath (Join-Path $dir '.sys' 'data')
     $null = New-Item -ItemType Directory -Force -Path 'desktop'
 
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'srv')
+    Set-Location -LiteralPath (Join-Path $dir '.sys' 'srv')
     $null = New-Item -ItemType Directory -Force -Path 'git'
 
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'of')
-    $null = New-Item -ItemType Directory -Force -Path @('cargo','nu')
-    
+    Set-Location -LiteralPath (Join-Path $dir '.sys' 'of')
+    $null = New-Item -ItemType Directory -Force -Path @('cargo')
+
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'of' 'cargo')
     $null = New-Item -ItemType Directory -Force -Path @('bin')
-
-    Set-Location -LiteralPath (Join-Path $dir 'sys' 'of' 'nu')
-    $null = New-Item -ItemType Directory -Force -Path @('mod','plugins')
 
     Set-Location -LiteralPath (Join-Path $dir '.config')
     $null = New-Item -ItemType Directory -Force -Path 'nushell'
 
     Set-Location -LiteralPath (Join-Path $dir '.config' 'nushell')
-    if (Test-Path -LiteralPath 'scripts') {
-        $retire_dir = mkdtemp (Join-Path $dir 'tmp' 'retire') 'mkpwrhome.'
-        $retire_to = Join-Path $retire_dir '.config' 'nushell'
-        $null = New-Item -ItemType Directory -Force -Path $retire_to
-        Move-Item -LiteralPath 'scripts' -Destination $retire_to
-    }
-    $null = New-Item -ItemType SymbolicLink -Path 'scripts' -Target (Join-Path '..' '..' 'sys' 'of' 'nu' 'mod')
+    $null = New-Item -ItemType Directory -Force -Path 'scripts'
 
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'cache')
     $null = New-Item -ItemType Directory -Force -Path 'cargo'
-    
+
     Set-Location -LiteralPath (Join-Path $dir 'sys' 'cache' 'cargo')
     $null = New-Item -ItemType Directory -Force -Path 'target'
 
@@ -124,41 +119,9 @@ function mk_pwrusr_home {
     }
 }
 
-function mkdtemp {
-    param(
-        [Parameter(Mandatory)]
-        [string] $dir,
-        [string] $prefix = 'tmp-'
-    )
-    
-    if (-not (Test-Path -LiteralPath $dir)) {
-        $null = New-Item -ItemType Directory $dir
-    }
-
-    $dir = Get-Item -LiteralPath $dir -ErrorAction Stop
-    if (-not $dir.PSIsContainer) {
-        throw "mkdtemp: not a directory: $dir"
-    }
-
-    for ($i = 0; $i -lt 100; $i++) {
-        $dirname = $prefix + [System.IO.Path]::GetRandomFileName()
-        $tempdir = Join-Path $dir.FullName $dirname
-
-        try {
-            return New-Item -ItemType Directory -Path $tempdir -ErrorAction Stop
-        }
-        catch {
-            if (Test-Path -LiteralPath $tempdir) { continue }
-            throw
-        }
-    }
-
-    throw "mkdtmp failed for: $dir"
-}
-
 try {
     Push-Location
-    mk_pwrusr_home ([System.IO.Path]::GetFullPath($dir, (Get-Location).Path)) $owner
+    mk_home_pwrusr ([System.IO.Path]::GetFullPath($dir, (Get-Location).Path)) $owner
 } finally {
     Pop-Location
 }
