@@ -21,20 +21,17 @@ function mk_home_dotsys {
     Set-Location -LiteralPath $dir
     $null = New-Item -ItemType Directory -Force -Path @('.config','.sys')
 
-    Set-Location -LiteralPath (Join-Path $dir '.config')
-    $null = New-Item -ItemType Directory -Force -Path 'secret'
-
     Set-Location -LiteralPath (Join-Path $dir '.sys')
-    $null = New-Item -ItemType Directory -Force -Path @('adhoc','cache','data','local','mnt','of','secret','state','srv','sync')
+    $null = New-Item -ItemType Directory -Force -Path @('adhoc','cache','data','local','mnt','of','paths','secret','state','srv','sync')
 
     Set-Location -LiteralPath (Join-Path $dir '.sys' 'secret')
-    $null = New-Item -ItemType Directory -Force -Path @('cache','data','state')
+    $null = New-Item -ItemType Directory -Force -Path @('cache','config','data','state')
 
     Set-Location -LiteralPath (Join-Path $dir '.sys' 'local')
-    $null = New-Item -ItemType Directory -Force -Path @('bin','doc','etc','lib','libexec','opt','share','src','var')
+    $null = New-Item -ItemType Directory -Force -Path @('bin','doc','etc','lib','libexec','opt','src')
     
     Set-Location -LiteralPath (Join-Path $dir '.sys' 'adhoc')
-    $null = New-Item -ItemType Directory -Force -Path @('bin','doc','etc','lib','libexec','opt','share','src','var')
+    $null = New-Item -ItemType Directory -Force -Path @('bin','doc','etc','lib','libexec','opt','src')
 
     if ($owner) {
         Set-Location -LiteralPath $dir

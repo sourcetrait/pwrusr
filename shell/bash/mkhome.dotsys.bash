@@ -10,20 +10,20 @@ mk_home_dotsys() {
     cd "$dir"
     mkdir -p .config .sys
 
-    cd "$dir/.config"
-    mkdir -p secret
-
     cd "$dir/.sys"
-    mkdir -p adhoc cache data local mnt of secret state srv sync
+    mkdir -p adhoc cache data local mnt of paths secret state srv sync
 
     cd "$dir/.sys/secret"
-    mkdir -p cache data state
-
+    mkdir -p config/{at,as,me} cache data state
+    
     cd "$dir/.sys/local"
-    mkdir -p bin doc etc lib libexec opt share src var
+    mkdir -p bin doc etc lib libexec opt src
 
     cd "$dir/.sys/adhoc"
-    mkdir -p bin doc etc lib libexec opt share src var
+    mkdir -p bin doc etc lib libexec opt src
+
+    cd "$dir/.sys/mnt"
+    mkdir -p secret/config/{at,as,me}
 
     if [ -n "$owner" ]; then
         cd "$dir"
