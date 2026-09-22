@@ -1,18 +1,18 @@
-pwrUsr
+pwrusr
 ================================================================================
 [![License Badge]][License]
 
 Cross-platform user profile specification and implementation.
 
-## dotSys
-**dotSys** places almost everything in `~/.sys` and standardizes within that.
-- [dotSys Directories](./doc/dirs/dotsys.md)
+## dotsys
+**dotsys** places almost everything in `~/.sys` and standardizes within that.
+- [dotsys Directories](./doc/dirs/dotsys.md)
 ### Software
 - `uenv` Standardizes environment variables beyond the **XDG** specification.
-## pwrUsr
-**pwrUsr** extends from *dotSys*. It guarantees that specific software and
+## pwrusr
+**pwrusr** extends from *dotsys*. It guarantees that specific software and
 configuration is available to the user, regardless of operating system.
-- [pwrUser Directories](./doc/dirs/dotsys/pwrusr.md)
+- [pwrusr Directories](./doc/dirs/dotsys/pwrusr.md)
 ## Software
 - `nushell`
   - `pwrusr`
