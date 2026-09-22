@@ -1,7 +1,7 @@
 # Directory Names: xdg
 ## Home
 - .cache Cache
-- .config Configuration
+- .config Config
 - .local Local
   - share Local Data
   - state State
