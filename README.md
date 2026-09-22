@@ -1,72 +1,25 @@
-pwrusr
+PwrUsr
 ================================================================================
 [![License Badge]][License]
 
-Standardized cross-platform-capable user profile designed for power users
+Cross-platform user profile specification and implementation.
 
-## System Guarantees
-Users are guaranteed the following:
-- Nushell (default)
-  - pwrusr config and module
-  - Plugins (standard)
-    - nu_plugin_soak
-- Rust
-  - Components (standard)
-    - analyzer
-- Helix
-- uenv
-
-## Home Guarantees (UENV_USR_SPEC = 'usrsys')
-- .config/
-  - secret/
-- sys/
-  - adhoc/
-    - exe/ cfg/ lib/ pkg/ data/ asset/ src/ doc/
-  - cache/ state/ data/
-  - secret/
-    - cache/ data/ state/
-  - local/
-    - bin/ etc/ lib/ opt/ var/ share/ src/ doc/
-  - mnt/
-  - srv/
-  - sync/
-    - as/ at/ me/
-
-## Home Guarantees (UENV_USR_SPEC = 'pwrusr', Extends 'usrsys')
-- .ssh/
-  - key/
-    - as/ at/ me/
-- sys/
-  - data/
-    - desktop/
-  - of/
-    - nu/
-      - mod/ plugins/
-  - srv/
-    - git/
-
-## Environment Guarantees
-The following will exist:
-- UENV_USR_SPEC (xdg, usrsys, pwrusr, other, ...)
-- XDG: CONFIG CACHE DATA STATE
-
-## Conventions
-- Anything that isn't XDG compliant:
-  - ~/sys/of/{name}, or
-  - ~/sys/{cache data state}/{name}
-- Third-party installs: ~/sys/local/
-- First-party installs: ~/sys/use/
-- UENV_USR_SPEC
-  - 'x_': extension
-  - 'other': not strictly based on a uenv standard or extension, or not known
-    - 'm_': modification (other) based on a uenv standard spec
-    - 'mx_': modification (other) based on a uenv extension spec
-
-## Initial Environment
-Initially configured as:
-- UENV_USR_SPEC = 'pwrusr'
-- CARGO_TARGET_DIR = ~/sys/cache/cargo/target
-
+## DotSys
+**DotSys** places almost everything in `~/.sys` and standardizes within that.
+- [DotSys Directories](./doc/dirs/dotsys.md)
+### Software
+- `uenv` Standardizes environment variables beyond the **XDG** specification.
+## PwrUsr
+**PwrUsr** extends from *DotSys*. It guarantees that specific software and
+configuration is available to the user, regardless of operating system.
+- [PwrUser Directories](./doc/dirs/dotsys/pwrusr.md)
+## Software
+- `nushell`
+  - `pwrusr`
+  - `nu_plugin_soak`
+- `rust`
+  - `rust-analyzer`
+- `helix`
 
 Repository
 --------------------------------------------------------------------------------
