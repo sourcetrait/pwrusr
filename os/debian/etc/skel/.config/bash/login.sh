@@ -26,10 +26,14 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-#+ UENV
+#+ DOTSYS
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/bash/interactive.bash" ]; then
-    . "${XDG_CONFIG_HOME:-$HOME/.config}/bash/interactive.bash"
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/interactive.bash"
 fi
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/bash/uenv.bash" ]; then
-    . "${XDG_CONFIG_HOME:-$HOME/.config}/bash/uenv.bash"
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/uenv.bash"
+    
+    if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/bash/dotsys.bash" ]; then
+        source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/dotsys.bash"
+    fi
 fi

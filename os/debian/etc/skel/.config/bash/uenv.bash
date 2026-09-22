@@ -56,16 +56,8 @@ UENV_USR_CONFIG="$XDG_CONFIG_HOME"
 UENV_USR_DATA="$XDG_DATA_HOME"
 UENV_USR_STATE="$XDG_STATE_HOME"
 
-if [ -d "$HOME/.sys/ptr/env/path" ] ; then
-    for p in $(ls -r "$HOME/.sys/ptr/env/path"); do
-        p="$(realpath "$HOME/.sys/ptr/env/path/$p")"
-        if [ -d "$p" ]; then
-            PATH="$p:$PATH"
-        fi
-    done
-fi
-
 export XDG_CACHE_HOME XDG_CONFIG_HOME XDG_DATA_HOME XDG_STATE_HOME
 export UENV_USR_CACHE UENV_USR_CONFIG UENV_USR_DATA UENV_USR_STATE
 export UENV_USR_SPEC UENV_USR_SYS UENV_USR_SUBSYS
 export UENV_USR_ADHOC UENV_USR_LOCAL
+

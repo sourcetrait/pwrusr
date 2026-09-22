@@ -68,8 +68,14 @@ mk_home_pwrusr() {
     cd "$dir/.sys/mnt"
     mkdir -p secret
 
-    cd "$dir/.sys/ptr/env/path"
+    cd "$dir/.sys/env/ptr/PATH"
     ln -s ../../../of/cargo/bin 3.cargo-bin
+
+    cd "$dir/.sys/env"
+    cat 'truecolor' > COLORTERM
+    cat 'hx' > EDITOR
+    cat '$HOME/.sys/of/cargo' > CARGO_HOME
+    cat '$HOME/.sys/cache/cargo/target' > CARGO_TARGET_DIR
 
     cd "$dir"
     mkdir -p .ssh

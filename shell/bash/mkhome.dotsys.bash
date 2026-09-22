@@ -22,9 +22,10 @@ mk_home_dotsys() {
     cd "$dir/.sys/adhoc"
     mkdir -p bin doc etc lib libexec opt src
 
-    cd "$dir/.sys/ptr"
-    mkdir -p env/path
-    cd env/path
+    cd "$dir/.sys/env"
+    mkdir -p ptr/PATH
+    
+    cd "$dir/.sys/env/ptr/PATH"
     ln -s ../../../adhoc/bin 0.adhoc-bin
     ln -s ../../../local/bin 1.local-bin
 
