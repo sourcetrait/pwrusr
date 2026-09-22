@@ -81,7 +81,7 @@ mk_home_pwrusr() {
     mkdir -p .ssh
 
     cd "$dir/.ssh"
-    mkdir -p ptr
+    mkdir -p key
 
     cd "$dir/.ssh"
     if [ ! -f config ]; then

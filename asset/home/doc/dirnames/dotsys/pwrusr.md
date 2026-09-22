@@ -1,0 +1,49 @@
+# Directory Names: pwrusr
+## Home
+- .config
+  - helix Helix Configuration
+  - nushell Nushell Configuration
+- .ssh SSH Configuration
+  - key SSH Keys
+- .sys
+  - adhoc
+    - lib
+      - nushell Adhoc Nushell Library
+    - libexec
+      - nushell Local Nushell Plugins
+  - cache
+    - cargo Cargo Cache
+      - target Cargo Target
+  - local
+    - lib
+      - nushell Local Nushell Library
+    - libexec
+      - nushell Adhoc Nushell Plugins
+  - of
+    - cargo Cargo Sub-System
+      - bin Cargo Executables
+  - mnt
+    - secret Secret Mounts
+  - ptr
+    - nushell Nushell Pointers
+      - lib Nushell Library Pointers
+      - libexec Nushell Plugin Pointers
+  - srv
+    - git Git Serve
+- bak Backups
+- data Data
+  - desktop Desktop
+- doc Documents
+- down Downloads
+- mix Mixed Media
+  - calc Calculations
+  - img Images
+  - mdl Models
+  - snd Sound
+  - txt Text
+  - vid Videos
+  - web Web
+- proj Projects
+- repo Repositories
+- sort Sorted
+- tpl Templates

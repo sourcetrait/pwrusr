@@ -1,0 +1,36 @@
+# Directory Names: dotsys
+## Home
+- .config Config
+  - secret Secret Config
+- .sys Sys
+  - cache Cache
+  - data Local Data
+  - env Environment Configuration
+    - ptr Environment Pointers
+      - PATH Executable Path Pointers
+  - adhoc Adhoc
+    - bin Adhoc Executables
+    - doc Adhoc Documentation
+    - etc Adhoc Configuration
+    - lib Adhoc Libraries
+    - libexec Adhoc Executable Libraries
+    - opt Adhoc Packages
+    - src Adhoc Source
+  - local Local
+    - bin Local Executables
+    - doc Local Documentation
+    - etc Local Configuration
+    - lib Local Libraries
+    - libexec Local Executable Libraries
+    - opt Local Packages
+    - src Local Source
+  - mnt Mounts
+  - of Sub-Systems
+  - ptr Pointers
+  - secret Secrets
+    - cache Secret Cache
+    - data Secret Data
+    - state Secret State
+  - srv Serve
+  - state State
+  - sync Synchronize
