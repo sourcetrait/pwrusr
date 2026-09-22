@@ -15,9 +15,6 @@ mk_home_pwrusr() {
     cd "$dir/mix"
     mkdir -p calc img mdl snd txt vid web
 
-    cd "$dir/.sys/sync"
-    mkdir -p as at me
-
     cd "$dir/.sys/data"
     mkdir -p desktop
 
@@ -39,23 +36,46 @@ mk_home_pwrusr() {
     cd "$dir/.config"
     mkdir -p nushell
 
-    cd "$dir/.config/nushell"
-    mkdir -p scripts
+    cd "$dir/.sys/local/lib"
+    mkdir -p nushell
+    
+    cd "$dir/.sys/adhoc/lib"
+    mkdir -p nushell
+    
+    cd "$dir/.sys/ptr"
+    mkdir -p nushell
+    
+    cd "$dir/.sys/ptr/nushell"
+    mkdir -p lib libexec
 
+    cd "$dir/.sys/ptr/nushell/lib"
+    ln -s ../../adhoc/lib/nushell 0.adhoc-lib
+    ln -s ../../local/lib/nushell 1.local-lib
+    
+    cd "$dir/.sys/ptr/nushell/libexec"
+    ln -s ../../adhoc/libexec/nushell 0.adhoc-lib
+    ln -s ../../local/libexec/nushell 1.local-lib
+
+    cd "$dir/.config/nushell"
+    ln -s ../../local/lib/nushell scripts
+    
     cd "$dir/.sys/cache"
     mkdir -p cargo
 
     cd "$dir/.sys/cache/cargo"
     mkdir -p target
 
+    cd "$dir/.sys/mnt"
+    mkdir -p secret
+
+    cd "$dir/.sys/ptr/env/path"
+    ln -s ../../../of/cargo/bin 3.cargo-bin
+
     cd "$dir"
     mkdir -p .ssh
 
     cd "$dir/.ssh"
-    mkdir -p sync
-
-    cd "$dir/.ssh/sync"
-    mkdir -p as at me
+    mkdir -p ptr
 
     cd "$dir/.ssh"
     if [ ! -f config ]; then

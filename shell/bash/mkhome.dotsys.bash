@@ -11,7 +11,7 @@ mk_home_dotsys() {
     mkdir -p .config .sys
 
     cd "$dir/.sys"
-    mkdir -p adhoc cache data local mnt of ptr secret state srv sync
+    mkdir -p adhoc cache data env local mnt of ptr secret state srv sync
 
     cd "$dir/.sys/secret"
     mkdir -p config cache data state
@@ -25,8 +25,8 @@ mk_home_dotsys() {
     cd "$dir/.sys/ptr"
     mkdir -p env/path
     cd env/path
-    ln -s ../../adhoc/bin 0.adhoc-bin
-    ln -s ../../local/bin 1.local-bin
+    ln -s ../../../adhoc/bin 0.adhoc-bin
+    ln -s ../../../local/bin 1.local-bin
 
     if [ -n "$owner" ]; then
         cd "$dir"
