@@ -22,7 +22,7 @@ function mk_home_dotsys {
     $null = New-Item -ItemType Directory -Force -Path @('.config','.sys')
 
     Set-Location -LiteralPath (Join-Path $dir '.sys')
-    $null = New-Item -ItemType Directory -Force -Path @('adhoc','cache','data','local','mnt','of','paths','secret','state','srv','sync')
+    $null = New-Item -ItemType Directory -Force -Path @('adhoc','cache','data','local','mnt','of','env','secret','state','srv','sync')
 
     Set-Location -LiteralPath (Join-Path $dir '.sys' 'secret')
     $null = New-Item -ItemType Directory -Force -Path @('cache','config','data','state')

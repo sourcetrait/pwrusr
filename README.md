@@ -20,6 +20,12 @@ configuration is available to the user, regardless of operating system.
 - `rust`
   - `rust-analyzer`
 - `helix`
+- `ripgrep`
+- `fd`
+### Package Managers
+- Linux: Distribution Native
+- Windows: Choco
+- MacOS: Homebrew
 
 Repository
 --------------------------------------------------------------------------------
